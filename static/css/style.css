@@ -253,37 +253,7 @@ h6 {
 
 .header { /* шапка: добавим по макету */ }
 
-/* --- Эффект "блок 2 наезжает на блок 1" --- */
-.hero-pin {
-    position: relative;
-}
-
-.hero-pin .hero {
-    position: sticky;
-    top: 0;
-    z-index: 0;
-}
-
-.hero-pin .about {
-    position: relative;
-    z-index: 1;
-}
-
-/* --- Эффект "Производство наезжает на Продукцию" --- */
-.products-pin {
-    position: relative;
-}
-
-.products-pin .products {
-    position: sticky;
-    top: 0;
-    z-index: 0;
-}
-
-.products-pin .production-section {
-    position: relative;
-    z-index: 1;
-}
+/* Пин-эффекты наезда блоков убраны — обычный последовательный скролл. */
 
 .hero {
     position: relative;
@@ -2414,12 +2384,6 @@ h6 {
 
 /* ---------- 767: Блок 3 «Продукция» — слайдер (мобильная версия) ---------- */
 @media (max-width: 768px) {
-    /* Sticky-эффект "наезда" оставлен, но убираем у #products z-index-контекст,
-       чтобы навигация слайдера могла "всплывать" поверх блока «Производство» */
-    .products-pin .products {
-        z-index: auto;
-    }
-
     .slider-navigation {
         position: relative;
         z-index: 2;
