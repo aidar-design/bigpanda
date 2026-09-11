@@ -1,0 +1,17 @@
+# Core
+Django>=4.2,<5.0
+
+# ImageField support
+Pillow>=10.0
+
+# Production server
+gunicorn>=21.0
+
+# PostgreSQL driver (PaaS Postgres add-on)
+psycopg2-binary>=2.9
+
+# Parse DATABASE_URL into Django DATABASES dict
+dj-database-url>=2.0
+
+# Serve static files in production (gunicorn + WhiteNoise)
+whitenoise>=6.5

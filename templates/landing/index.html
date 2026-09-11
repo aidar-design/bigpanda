@@ -1,0 +1,522 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ t.site.title }}{% endblock %}
+
+{% block content %}
+<main>
+    <!-- Блоки 1+2 в одном контейнере для эффекта "блок 2 наезжает на блок 1" -->
+    <div class="hero-pin">
+    <!-- ============ Блок 1: Герой ============ -->
+    <section class="hero">
+        <div class="hero__bg" aria-hidden="true"></div>
+
+        <div class="container hero__container">
+            <header class="hero__header">
+                <a href="#" class="hero__logo">
+                    <img src="{% static 'img/logo.png' %}" width="176" height="99" alt="{{ t.hero.logo_alt }}">
+                </a>
+                <nav class="hero__nav">
+                    <a href="#about">{{ t.nav.about }}</a>
+                    <a href="#products">{{ t.nav.products }}</a>
+                    <a href="#production">{{ t.nav.production }}</a>
+                    <a href="#news">{{ t.nav.news }}</a>
+                    <a href="#certificates">{{ t.nav.certificates }}</a>
+                </nav>
+
+                <!-- Переключатель языка: стоит сразу за меню, до CTA -->
+                <div class="hero__right">
+                    <div class="lang-switch" role="group" aria-label="Language">
+                        {% for code, label in LANGS %}
+                            <a class="lang-switch__btn{% if code == LANG %} lang-switch__btn--active{% endif %}"
+                               href="?lang={{ code }}" data-lang="{{ code }}">{{ label }}</a>
+                        {% endfor %}
+                    </div>
+                    <a href="#contact" class="btn btn--orange hero__cta">{{ t.nav.collaboration }}</a>
+                </div>
+
+                <button class="hero__burger" type="button" aria-label="{{ t.menu.open }}">
+                    <img src="{% static 'img/icons/menu.svg' %}" alt="{{ t.menu.open }}">
+                </button>
+                <div class="hero__mobile-menu" id="heroMobileMenu">
+                    <button class="hero__mobile-close" type="button" aria-label="{{ t.menu.close }}">
+                        <img src="{% static 'img/icons/cross.svg' %}" alt="{{ t.menu.close }}">
+                    </button>
+                    <nav class="hero__mobile-nav">
+                        <a href="#about">{{ t.nav.about }}</a>
+                        <a href="#products">{{ t.nav.products }}</a>
+                        <a href="#production">{{ t.nav.production }}</a>
+                        <a href="#news">{{ t.nav.news }}</a>
+                        <a href="#certificates">{{ t.nav.certificates }}</a>
+                        <a href="#contact">{{ t.nav.collaboration }}</a>
+                    </nav>
+                    <!-- В мобильном меню язык выводим отдельным рядом -->
+                    <div class="lang-switch lang-switch--mobile" role="group" aria-label="Language">
+                        {% for code, label in LANGS %}
+                            <a class="lang-switch__btn{% if code == LANG %} lang-switch__btn--active{% endif %}"
+                               href="?lang={{ code }}">{{ label }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </header>
+
+            <div class="hero__title">
+                {% if LANG == 'kg' %}
+                    <img src="{% static 'img/icons/header_kg.svg' %}" width="1164" height="104" alt="{{ t.hero.title_alt }}">
+                {% else %}
+                    <img src="{% static 'img/icons/header.svg' %}" width="1164" height="104" alt="{{ t.hero.title_alt }}">
+                {% endif %}
+            </div>
+
+            <div class="hero__stage">
+                <img class="hero__glow" src="{% static 'img/Ellipse-light.png' %}" alt="">
+                <img class="hero__panda" src="{% static 'img/panda.png' %}" alt="Панда">
+            </div>
+
+            <div class="hero__icons">
+                <img src="{% static 'img/icons/halal.svg' %}" width="140" alt="{{ t.hero.badge_halal }}">
+                <img src="{% static 'img/icons/gmo.svg' %}" width="140" alt="{{ t.hero.badge_gmo }}">
+                <img src="{% static 'img/icons/madein.svg' %}" width="140" alt="{{ t.hero.badge_madein }}">
+            </div>
+        </div>
+
+        <div class="hero__gradient" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============ Блок 2: О нас ============ -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="grid about__grid">
+                <div class="about__content col-6">
+                    <h1 class="about__title">{{ t.about.title }}</h1>
+
+                    <p class="about__text">{{ t.about.lead }}</p>
+                    <p class="about__text">{{ t.about.body }}</p>
+
+                    <div class="accordion about__accordion">
+                        <div class="accordion-item active">
+                            <button class="accordion-header" type="button">
+                                <h4>{{ t.about.value1.title }}</h4>
+                                <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <div class="accordion-content">
+                                <p>{{ t.about.value1.content }}</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" type="button">
+                                <h4>{{ t.about.value2.title }}</h4>
+                                <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <div class="accordion-content">
+                                <p>{{ t.about.value2.content }}</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" type="button">
+                                <h4>{{ t.about.value3.title }}</h4>
+                                <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <div class="accordion-content">
+                                <p>{{ t.about.value3.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <img class="about__panda" src="{% static 'img/panda2.png' %}" alt="Панда">
+        </div>
+    </section>
+    </div><!-- /hero-pin -->
+
+    <!-- Блоки 3+4 в одном контейнере: "Продукция" фиксируется, "Производство" наезжает -->
+    <div class="products-pin">
+    <!-- ============ Блок 3: Продукция ============ -->
+    <section class="products" id="products">
+        <div class="container">
+            <h1 class="products__title">{{ t.products.title }}</h1>
+
+            <div class="products-slider">
+                <div class="slider-container">
+                    <div class="slider-track">
+
+                        <div class="slide active" data-bg="#C73A3A">
+                            <div class="slide-content">
+                                <div class="slide-text">
+                                    <h3>{{ t.product.beef.title }}</h3>
+                                    <p>{{ t.product.beef.body }}</p>
+                                    <div class="slide-weight">
+                                        <h6>{{ t.product.weight.cup }} 110 гр.</h6>
+                                        <h6>{{ t.product.weight.pack }} 110 гр.</h6>
+                                    </div>
+                                </div>
+                                <div class="slide-image">
+                                    <img src="{% static 'img/product1.png' %}" class="zoomable" alt="{{ t.product.beef.alt }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide" data-bg="#F5B800">
+                            <div class="slide-content">
+                                <div class="slide-text">
+                                    <h3>{{ t.product.chicken.title }}</h3>
+                                    <p>{{ t.product.chicken.body }}</p>
+                                    <div class="slide-weight">
+                                        <h6>{{ t.product.weight.cup }} 100 гр.</h6>
+                                        <h6>{{ t.product.weight.pack }} 90 гр.</h6>
+                                    </div>
+                                </div>
+                                <div class="slide-image">
+                                    <img src="{% static 'img/product2.png' %}" class="zoomable" alt="{{ t.product.chicken.alt }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide" data-bg="#E8924F">
+                            <div class="slide-content">
+                                <div class="slide-text">
+                                    <h3>{{ t.product.goulash.title }}</h3>
+                                    <p>{{ t.product.goulash.body }}</p>
+                                    <div class="slide-weight">
+                                        <h6>{{ t.product.weight.cup }} 110 гр.</h6>
+                                        <h6>{{ t.product.weight.pack }} 120 гр.</h6>
+                                    </div>
+                                </div>
+                                <div class="slide-image">
+                                    <img src="{% static 'img/product3.png' %}" class="zoomable" alt="{{ t.product.goulash.alt }}">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="slider-navigation">
+                    <div class="slider-indicators">
+                        <span class="indicator active"></span>
+                        <span class="indicator"></span>
+                        <span class="indicator"></span>
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-btn prev" type="button" aria-label="{{ t.products.prev }}">
+                            <img src="{% static 'img/icons/arrow-left.svg' %}" alt="{{ t.products.prev }}">
+                        </button>
+                        <button class="slider-btn next" type="button" aria-label="{{ t.products.next }}">
+                            <img src="{% static 'img/icons/arrow-right.svg' %}" alt="{{ t.products.next }}">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Блок 4: Производство ============ -->
+    <section class="production-section" id="production">
+        <div class="container">
+            <h1 class="production-title">{{ t.production.title }}</h1>
+
+            <div class="production-hero">
+                <img src="{% static 'img/photo1.jpeg' %}" alt="{{ t.production.img_alt }}" class="production-hero__img zoomable">
+                <div class="production-hero__body">
+                    <h4>{{ t.production.legal }}</h4>
+                    <p>{{ t.production.lead }}</p>
+                </div>
+            </div>
+
+            <div class="production-details">
+                <div class="details-content">
+                    <div class="details-left">
+                        <h4>{{ t.production.details_title }}</h4>
+                        <ul class="features-list">
+                            <li>
+                                <img src="{% static 'img/icons/icn1.svg' %}" alt="" class="feature-icon">
+                                <span>{{ t.production.feat1 }}</span>
+                            </li>
+                            <li>
+                                <img src="{% static 'img/icons/icn2.svg' %}" alt="" class="feature-icon">
+                                <span>{{ t.production.feat2 }}</span>
+                            </li>
+                            <li>
+                                <img src="{% static 'img/icons/icn3.svg' %}" alt="" class="feature-icon">
+                                <span>{{ t.production.feat3 }}</span>
+                            </li>
+                            <li>
+                                <img src="{% static 'img/icons/icn4.svg' %}" alt="" class="feature-icon">
+                                <span>{{ t.production.feat4 }}</span>
+                            </li>
+                            <li>
+                                <img src="{% static 'img/icons/icn5.svg' %}" alt="" class="feature-icon">
+                                <span>{{ t.production.feat5 }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="details-right">
+                        <img src="{% static 'img/photo2.jpeg' %}" class="zoomable" alt="{{ t.production.img_alt }}">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Технологии и оборудование -->
+                <div class="technology-block">
+                    <h1 class="technology-title">{{ t.production.tech_title }}</h1>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <img src="{% static 'img/icons/icn6.svg' %}" alt="" class="stat-icon">
+                            <div class="stat-content">
+                                <div class="stat-number">
+                                    <h2>{{ t.production.stat1_num }}</h2>
+                                    <h5>{{ t.production.stat1_unit }}</h5>
+                                </div>
+                                <p>{{ t.production.stat1_body }}</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <img src="{% static 'img/icons/icn7.svg' %}" alt="" class="stat-icon">
+                            <div class="stat-content">
+                                <div class="stat-number">
+                                    <h2>{{ t.production.stat2_num }}</h2>
+                                    <h5>{{ t.production.stat2_unit }}</h5>
+                                </div>
+                                <p>{{ t.production.stat2_body }}</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <img src="{% static 'img/icons/icn8.svg' %}" alt="" class="stat-icon">
+                            <div class="stat-content">
+                                <div class="stat-number">
+                                    <h2>{{ t.production.stat3_num }}</h2>
+                                    <h5>{{ t.production.stat3_unit }}</h5>
+                                </div>
+                                <p>{{ t.production.stat3_body }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div><!-- /products-pin -->
+
+    <!-- ============ Блок: Хранение и логистика ============ -->
+    <section class="storage-section">
+        <div class="container">
+
+            <!-- БЛОК 1: текст слева, фото справа -->
+            <div class="storage-block block-image-right">
+                <h1>{{ t.storage.title }}</h1>
+
+                <div class="block-content">
+                    <h4>{{ t.storage.body }}</h4>
+                    <p>{{ t.storage.subhead }}</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">
+                                <h2>{{ t.storage.stat1_num }}</h2>
+                                <h5>{{ t.storage.stat1_unit }}</h5>
+                            </div>
+                            <p>{{ t.storage.stat1_body }}</p>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">
+                                <h2>{{ t.storage.stat2_num }}</h2>
+                                <h5>{{ t.storage.stat2_unit }}</h5>
+                            </div>
+                            <p>{{ t.storage.stat2_body }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-image">
+                    <img src="{% static 'img/photo3.jpeg' %}" alt="{{ t.storage.img_alt }}" class="zoomable">
+                </div>
+            </div>
+
+            <!-- БЛОК 2: фото слева, текст справа -->
+            <div class="storage-block block-image-left">
+                <div class="block-image">
+                    <img src="{% static 'img/photo4.jpeg' %}" alt="{{ t.quality.title }}" class="zoomable">
+                </div>
+                <div class="block-content">
+                    <h4>{{ t.quality.title }}</h4>
+                    <p>{{ t.quality.body }}</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <h2>{{ t.quality.iso1 }}</h2>
+                            <p>{{ t.quality.iso1_sub }}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h2>{{ t.quality.iso2 }}</h2>
+                            <p>{{ t.quality.iso2_sub }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============ Блок: Продукция Big Panda с галереей документов ============ -->
+    <section class="certificates-section" id="certificates">
+        <div class="container">
+            <div class="certificates-block">
+                <h1>{{ t.cert.title }}</h1>
+
+                <div class="certificates-grid">
+                <!-- Левая часть: буллеты -->
+                <div class="certificates-content">
+                    <ul class="benefits-list">
+                        <li>
+                            <img src="{% static 'img/icons/icn9.svg' %}" alt="" class="benefit-icon">
+                            <h6>{{ t.cert.b1 }}</h6>
+                        </li>
+                        <li>
+                            <img src="{% static 'img/icons/icn9.svg' %}" alt="" class="benefit-icon">
+                            <h6>{{ t.cert.b2 }}</h6>
+                        </li>
+                        <li>
+                            <img src="{% static 'img/icons/icn9.svg' %}" alt="" class="benefit-icon">
+                            <h6>{{ t.cert.b3 }}</h6>
+                        </li>
+                        <li>
+                            <img src="{% static 'img/icons/icn9.svg' %}" alt="" class="benefit-icon">
+                            <h6>{{ t.cert.b4 }}</h6>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Правая часть: галерея документов -->
+                <div class="certificates-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-track">
+                            <div class="gallery-item" data-index="0">
+                                <img src="{% static 'img/doc1.png' %}" alt="{{ t.cert.doc_alt }} 1">
+                            </div>
+                            <div class="gallery-item active" data-index="1">
+                                <img src="{% static 'img/doc2.png' %}" alt="{{ t.cert.doc_alt }} 2">
+                            </div>
+                            <div class="gallery-item" data-index="2">
+                                <img src="{% static 'img/doc3.png' %}" alt="{{ t.cert.doc_alt }} 3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-controls">
+                        <button class="gallery-btn prev" type="button" aria-label="{{ t.cert.prev }}">
+                            <img src="{% static 'img/icons/arrow-left.svg' %}" alt="{{ t.cert.prev }}">
+                        </button>
+                        <button class="gallery-btn next" type="button" aria-label="{{ t.cert.next }}">
+                            <img src="{% static 'img/icons/arrow-right.svg' %}" alt="{{ t.cert.next }}">
+                        </button>
+                    </div>
+                </div>
+                </div><!-- /certificates-grid -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Блок: Новости ============ -->
+    <section class="news-section" id="news">
+        <div class="container">
+            <h1 class="news-section-title">{{ t.news.title }}</h1>
+
+            <div class="news-slider">
+                {% for item in news_items %}
+                <div class="news-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}">
+                    <div class="news-content">
+                        <div class="news-text">
+                            <h4 class="news-title">{{ item.title }}</h4>
+
+                            <div class="news-description">
+                                <p class="news-preview">{{ item.preview_text }}</p>
+                                <div class="news-full">
+                                    {{ item.content|linebreaks }}
+                                </div>
+                            </div>
+
+                            <button class="news-toggle" type="button">
+                                <span class="toggle-more">{{ t.news.toggle_more }}</span>
+                                <span class="toggle-less">{{ t.news.toggle_less }}</span>
+                            </button>
+                        </div>
+
+                        <div class="news-navigation">
+                            <div class="news-controls">
+                                <button class="news-btn prev" type="button" aria-label="{{ t.news.prev }}">
+                                    <img src="{% static 'img/icons/arrow-left.svg' %}" alt="{{ t.news.prev }}">
+                                </button>
+                                <button class="news-btn next" type="button" aria-label="{{ t.news.next }}">
+                                    <img src="{% static 'img/icons/arrow-right.svg' %}" alt="{{ t.news.next }}">
+                                </button>
+                            </div>
+                            <p class="news-date">{{ item.date|date:"d.m.Y" }}</p>
+                        </div>
+                    </div>
+
+                    <div class="news-image">
+                        {% if item.image_url %}
+                        <img src="{{ item.image_url }}" alt="{{ item.title }}" class="zoomable">
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <p class="news-empty">{{ t.news.empty }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Блок: Контакты (CTA) ============ -->
+    <section class="contact-section" id="contact">
+        <img src="{% static 'img/pomidor1.png' %}" alt="" class="parallax-image parallax-tl">
+        <img src="{% static 'img/luk.png' %}" alt="" class="parallax-image parallax-tr">
+        <img src="{% static 'img/grib.png' %}" alt="" class="parallax-image parallax-bl">
+        <img src="{% static 'img/pomidor2.png' %}" alt="" class="parallax-image parallax-br">
+
+        <div class="container">
+            <div class="contact-content">
+                <h4>{{ t.contact.q1 }}</h4>
+                <h1>{{ t.contact.q2 }}</h1>
+
+                <button class="contact-button" type="button">{{ t.contact.cta }}</button>
+
+                <h4>{{ t.contact.sales }}</h4>
+                <h3><a href="tel:+996770999026">+996 770 999 026</a></h3>
+                <h3><a href="mailto:zolotoypotok.kg@gmail.com">zolotoypotok.kg@gmail.com</a></h3>
+
+                <div class="social-icons">
+                    <img src="{% static 'img/icons/facebook.svg' %}" alt="{{ t.social.facebook }}">
+                    <img src="{% static 'img/icons/tiktok.svg' %}" alt="{{ t.social.tiktok }}">
+                    <img src="{% static 'img/icons/telegram.svg' %}" alt="{{ t.social.telegram }}">
+                    <img src="{% static 'img/icons/inst.svg' %}" alt="{{ t.social.instagram }}">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fullscreen модальное окно -->
+    <div class="fullscreen-modal" id="fullscreen-modal">
+        <button class="modal-close" type="button" aria-label="{{ t.lightbox.close }}">&times;</button>
+        <img src="" alt="" class="modal-image">
+        <div class="modal-controls">
+            <button class="modal-btn prev" type="button" aria-label="{{ t.cert.prev }}">
+                <img src="{% static 'img/icons/arrow-left.svg' %}" alt="{{ t.cert.prev }}">
+            </button>
+            <button class="modal-btn next" type="button" aria-label="{{ t.cert.next }}">
+                <img src="{% static 'img/icons/arrow-right.svg' %}" alt="{{ t.cert.next }}">
+            </button>
+        </div>
+    </div>
+</main>
+{% endblock %}
