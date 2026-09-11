@@ -1,0 +1,6 @@
+# Disable GitHub artifact attestation verification for Python builds.
+# Railway's mise can't find attestations for some Python patch versions
+# (currently python@3.12.7 and similar), so we turn the check off.
+# Safe — we still verify the download via checksum in the install step.
+[settings]
+python.github_attestations = false
